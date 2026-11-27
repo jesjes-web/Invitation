@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Jes &amp; Charm — Royal Wedding Invitation</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts: Cinzel Decorative, Cormorant Garamond, Great Vibes, Montserrat -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -23,7 +23,6 @@
             royal: '#16357A',
             royalDark: '#0B1C47',
             royalLight: '#244DA6',
-            sapphire: '#1D4ED8',
             gold: '#D4AF37',
             goldLight: '#F3DC8B',
             goldDark: '#9E7B1C',
@@ -43,14 +42,31 @@
   </script>
 
   <style>
-    /* Royal Blue Disney Princess Backdrop & Shimmering Textures */
+    :root {
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
     body {
       background:
         radial-gradient(circle at 50% 20%, rgba(59, 113, 227, 0.28) 0%, transparent 55%),
         radial-gradient(circle at 50% 45%, #16357A 0%, #0E2359 60%, #071233 100%);
       color: #1A2238;
-      overflow-x: hidden;
-      min-height: 100vh;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
     }
 
     /* Fine silk-cotton royal ivory cardstock grain */
@@ -70,28 +86,27 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* 3D Envelope Scene Architecture */
+    /* 3D Envelope Scene Architecture - Responsive Across All Viewports */
     .envelope-stage {
-      perspective: 1400px;
-      width: 100%;
-      max-width: 520px;
+      width: min(92vw, 490px);
       aspect-ratio: 1.48 / 1;
       position: relative;
       margin: 0 auto;
-      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s ease;
+      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.75s ease;
     }
 
     .envelope-wrapper {
       width: 100%;
       height: 100%;
       position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
       cursor: pointer;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    .envelope-wrapper:not(.is-open):hover {
-      transform: translateY(-7px) rotateX(4deg);
+    @media (hover: hover) {
+      .envelope-wrapper:not(.is-open):hover {
+        transform: translateY(-6px);
+      }
     }
 
     /* Royal Sapphire Velvet Back Base */
@@ -101,27 +116,26 @@
       background: linear-gradient(165deg, #1B3F91 0%, #0D2052 100%);
       border-radius: 12px;
       box-shadow:
-        0 30px 65px -12px rgba(4, 10, 30, 0.75),
+        0 28px 60px -12px rgba(4, 10, 30, 0.78),
         0 0 35px rgba(59, 130, 246, 0.25),
-        inset 0 0 0 1px rgba(212, 175, 55, 0.38);
+        inset 0 0 0 1px rgba(212, 175, 55, 0.4);
       z-index: 1;
     }
 
-    /* Sparkling Cinderella Silver-Gold Inner Liner */
+    /* Sparkling Gold Inner Liner */
     .envelope-liner {
       position: absolute;
-      top: 4px;
-      left: 6px;
-      right: 6px;
+      top: 3px;
+      left: 5px;
+      right: 5px;
       height: 62%;
       background: linear-gradient(145deg, #F4E096 0%, #D4AF37 45%, #A6821E 100%);
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       z-index: 2;
       opacity: 0.95;
-      border-radius: 6px 6px 0 0;
+      border-radius: 8px 8px 0 0;
     }
 
-    /* Starlight shimmer dots inside liner */
     .envelope-liner::after {
       content: '';
       position: absolute;
@@ -133,32 +147,35 @@
       background-position: 0 0, 5px 5px;
     }
 
-    /* Preview Fairytale Invitation Card tucked inside envelope */
+    /* Couple Photo Card Inside Envelope - Rises Cleanly Above All Flaps */
     .envelope-card-preview {
       position: absolute;
-      left: 5%;
-      right: 5%;
+      left: 6%;
+      right: 6%;
+      top: 6%;
       bottom: 6%;
-      height: 88%;
       background: linear-gradient(180deg, #FFFFFF 0%, #F2F6FF 100%);
-      border-radius: 8px;
-      border: 1px solid rgba(212, 175, 55, 0.75);
-      box-shadow: 0 6px 24px rgba(7, 18, 51, 0.35);
+      border-radius: 10px;
+      border: 1.5px solid rgba(212, 175, 55, 0.85);
+      box-shadow: 0 8px 24px rgba(7, 18, 51, 0.35);
       z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 1.25rem;
+      padding: clamp(8px, 2.5vw, 14px);
       text-align: center;
-      transition: transform 0.95s cubic-bezier(0.34, 1.36, 0.64, 1)0.25s, z-index 0s linear 0.45s, box-shadow 0.5s ease 0.45s, opacity 0.5s ease;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
+      transition:
+        transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.35s,
+        z-index 0s linear 0.55s,
+        box-shadow 0.6s ease 0.55s;
     }
 
     .envelope-wrapper.is-open .envelope-card-preview {
-      transform: translateY(-72%);
-      z-index: 8;
-      box-shadow: 0 18px 40px rgba(4, 10, 30, 0.55);
+      z-index: 20;
+      transform: translateY(-34%) scale(1.04);
+      box-shadow: 0 24px 50px rgba(4, 10, 30, 0.68), 0 0 0 1px rgba(243, 220, 139, 0.65);
     }
 
     /* Left, Right, and Bottom Royal Blue Satin Pocket Flaps */
@@ -170,7 +187,6 @@
       border-radius: 12px 0 0 12px;
       z-index: 4;
       pointer-events: none;
-      filter: drop-shadow(2px 0 5px rgba(4, 10, 30, 0.4));
     }
 
     .envelope-flap-right {
@@ -181,7 +197,6 @@
       border-radius: 0 12px 12px 0;
       z-index: 4;
       pointer-events: none;
-      filter: drop-shadow(-2px 0 5px rgba(4, 10, 30, 0.4));
     }
 
     .envelope-flap-bottom {
@@ -192,10 +207,8 @@
       border-radius: 0 0 12px 12px;
       z-index: 5;
       pointer-events: none;
-      filter: drop-shadow(0 -4px 8px rgba(4, 10, 30, 0.42));
     }
 
-    /* Gilded gold filigree trim on pocket flaps */
     .envelope-pocket-trim {
       position: absolute;
       inset: 0;
@@ -203,7 +216,7 @@
       pointer-events: none;
     }
 
-    /* Top Triangular Flap (3D Hinged) */
+    /* Top Hinged Triangular Flap */
     .envelope-flap-top {
       position: absolute;
       top: 0;
@@ -213,36 +226,36 @@
       background: linear-gradient(180deg, #2148A3 0%, #132E6E 100%);
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       transform-origin: top center;
-      transform: rotateX(0deg);
-      transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s linear 0.35s;
+      transform: perspective(1000px) rotateX(0deg);
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s linear 0.3s;
       z-index: 7;
       border-radius: 12px 12px 0 0;
-      filter: drop-shadow(0 10px 14px rgba(4, 10, 30, 0.5));
     }
 
     .envelope-wrapper.is-open .envelope-flap-top {
-      transform: rotateX(180deg);
+      transform: perspective(1000px) rotateX(180deg);
       z-index: 2;
-      filter: drop-shadow(0 -2px 4px rgba(4, 10, 30, 0.2));
     }
 
-    /* Royal Crown Wax Seal Styling & Enchanted Glow Pulse */
+    /* Royal Crown Wax Seal */
     .wax-seal-container {
       position: absolute;
       top: 54%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 10;
-      transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.45s ease;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
       cursor: pointer;
     }
 
-    .envelope-wrapper:not(.is-open):hover .wax-seal-container {
-      transform: translate(-50%, -50%) scale(1.08);
+    @media (hover: hover) {
+      .envelope-wrapper:not(.is-open):hover .wax-seal-container {
+        transform: translate(-50%, -50%) scale(1.08);
+      }
     }
 
     .envelope-wrapper.is-open .wax-seal-container {
-      transform: translate(-50%, -75%) scale(0.75);
+      transform: translate(-50%, -75%) scale(0.7);
       opacity: 0;
       pointer-events: none;
     }
@@ -261,8 +274,8 @@
     .invitation-suite-modal {
       opacity: 0;
       pointer-events: none;
-      transform: translateY(40px) scale(0.95);
-      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateY(32px) scale(0.96);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .invitation-suite-modal.is-visible {
@@ -271,7 +284,23 @@
       transform: translateY(0) scale(1);
     }
 
-    /* Custom Scrollbar */
+    /* Couple Photo Frame Exposure & Crisp Rendering */
+    .couple-photo-frame {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #16357A, #0B1C47);
+    }
+
+    .couple-photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 28%;
+      /* Subtle bright & warm fairytale exposure balance */
+      filter: brightness(1.04) contrast(1.02) saturate(1.05);
+      display: block;
+    }
+
     ::-webkit-scrollbar {
       width: 6px;
     }
@@ -290,8 +319,8 @@
   <canvas id="ambientCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
   <!-- Top Utility Bar -->
-  <header class="relative z-30 w-full max-w-5xl mx-auto px-4 sm:px-6 pt-4 sm:pt-6 flex items-center justify-between">
-    <div class="flex items-center gap-2 text-xs tracking-[0.22em] uppercase text-goldLight/95 font-medium">
+  <header class="relative z-30 w-full max-w-5xl mx-auto px-4 sm:px-6 pt-3 sm:pt-5 flex items-center justify-between">
+    <div class="flex items-center gap-2 text-[11px] sm:text-xs tracking-[0.22em] uppercase text-goldLight/95 font-medium">
       <span class="inline-block w-2 h-2 rounded-full bg-goldLight shadow-[0_0_8px_#F3DC8B]"></span>
       <span id="headerDateBadge">May 15, 2027</span>
     </div>
@@ -313,7 +342,7 @@
         <span id="soundStatusText" class="hidden sm:inline">Chime Off</span>
       </button>
 
-      <!-- Customize & Google Sheet Link Button (Visible when ?host is in URL) -->
+      <!-- Customize Button (Visible when ?host is in URL) -->
       <button
         id="openCustomizeBtn"
         type="button"
@@ -329,22 +358,22 @@
   </header>
 
   <!-- MAIN STAGE -->
-  <main class="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 py-8 sm:py-12">
+  <main class="relative z-10 flex flex-col items-center justify-center min-h-[calc(100dvh-68px)] px-4 py-6 sm:py-10">
 
-    <!-- STAGE 1: 3D ROYAL BLUE FAIRYTALE ENVELOPE -->
+    <!-- STAGE 1: 3D ROYAL BLUE FAIRYTALE ENVELOPE WITH COUPLE PHOTO CARD -->
     <section id="envelopeSection" class="w-full max-w-xl mx-auto flex flex-col items-center transition-all duration-700">
-      <div class="text-center mb-6 sm:mb-8">
-        <svg class="w-10 h-6 mx-auto mb-2 text-goldLight drop-shadow-[0_0_8px_rgba(243,220,139,0.5)]" viewBox="0 0 64 36" fill="none" stroke="currentColor" stroke-width="1.6">
+      <div class="text-center mb-5 sm:mb-7">
+        <svg class="w-9 h-5 sm:w-10 sm:h-6 mx-auto mb-1.5 text-goldLight drop-shadow-[0_0_8px_rgba(243,220,139,0.5)]" viewBox="0 0 64 36" fill="none" stroke="currentColor" stroke-width="1.6">
           <path d="M8 28 L14 12 L24 21 L32 7 L40 21 L50 12 L56 28 Z" stroke-linejoin="round" />
           <line x1="8" y1="32" x2="56" y2="32" stroke-linecap="round" />
           <circle cx="32" cy="4" r="2" fill="currentColor" />
           <circle cx="14" cy="9" r="1.5" fill="currentColor" />
           <circle cx="50" cy="9" r="1.5" fill="currentColor" />
         </svg>
-        <p class="text-[11px] sm:text-xs uppercase tracking-[0.32em] text-silverDust/90 font-medium mb-1">
+        <p class="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-silverDust/90 font-medium mb-1">
           A Royal Invitation For You
         </p>
-        <h1 class="font-script text-4xl sm:text-5xl gold-foil-text drop-shadow-sm py-0.5">
+        <h1 class="font-script text-[clamp(2.25rem,8vw,3.25rem)] gold-foil-text drop-shadow-sm leading-tight">
           <span class="couple-names-display">Jes &amp; Charm</span>
         </h1>
       </div>
@@ -356,15 +385,42 @@
           <div class="envelope-back"></div>
           <div class="envelope-liner"></div>
 
+          <!-- Rising Card Inside Envelope (Features Couple Photo + Names, Unobstructed Above Flaps) -->
           <div class="envelope-card-preview">
-            <div class="w-full h-full border border-gold/65 rounded-md flex flex-col items-center justify-center p-3">
-              <p class="text-[9px] sm:text-[10px] uppercase tracking-[0.28em] text-goldDark font-semibold mb-1">Royal Wedding Invitation</p>
-              <p class="font-script text-3xl sm:text-4xl text-royal couple-names-display">Jes &amp; Charm</p>
-              <div class="w-14 h-[1px] bg-gold/70 my-1.5"></div>
-              <p class="font-serif italic text-xs sm:text-sm text-mutedText wedding-date-short">May 15, 2027 • Villa Monica</p>
+            <div class="w-full h-full border border-gold/75 rounded-lg flex flex-col items-center justify-between p-2.5 sm:p-3.5 bg-gradient-to-b from-ivory to-parchment/70">
+              <p class="text-[8px] sm:text-[10px] uppercase tracking-[0.26em] text-goldDark font-semibold">
+                Royal Wedding Invitation
+              </p>
+
+              <!-- Couple Photo Frame Inside Envelope Card -->
+              <div class="couple-photo-frame w-[68%] aspect-[4/3] rounded-lg border-2 border-gold/80 shadow-md my-1">
+                <img
+                  id="envelopeCouplePhoto"
+                  src=""
+                  alt="Jes and Charm"
+                  class="couple-photo-img hidden"
+                />
+                <!-- Elegant Fallback Placeholder until photo file is added -->
+                <div id="envelopePhotoFallback" class="w-full h-full flex flex-col items-center justify-center text-goldLight/90 px-2">
+                  <svg class="w-6 h-6 sm:w-7 sm:h-7 mb-1 opacity-85" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
+                  <span class="font-display text-xs sm:text-sm tracking-widest">J &amp; C</span>
+                </div>
+              </div>
+
+              <div>
+                <p class="font-script text-[clamp(1.5rem,5.5vw,2.15rem)] text-royal leading-none couple-names-display">
+                  Jes &amp; Charm
+                </p>
+                <p class="font-serif italic text-[11px] sm:text-xs text-mutedText mt-0.5 wedding-date-short">
+                  May 15, 2027 • Villa Monica
+                </p>
+              </div>
             </div>
           </div>
 
+          <!-- Pocket Flaps -->
           <div class="envelope-flap-left"></div>
           <div class="envelope-flap-right"></div>
           <div class="envelope-flap-bottom"></div>
@@ -374,15 +430,16 @@
             <polyline points="2,348 260,158 518,348" fill="none" stroke="rgba(243,220,139,0.5)" stroke-width="1.4" />
           </svg>
 
+          <!-- Top Hinged Flap -->
           <div class="envelope-flap-top">
             <svg class="w-full h-full" viewBox="0 0 520 203" preserveAspectRatio="none">
               <polyline points="8,4 260,196 512,4" fill="none" stroke="rgba(243,220,139,0.65)" stroke-width="1.6" />
             </svg>
           </div>
 
-          <!-- Embossed Royal Gold Crown Wax Seal ("J & C") -->
+          <!-- Embossed Royal Gold Crown Wax Seal -->
           <div id="waxSealBtn" class="wax-seal-container">
-            <div class="seal-ring-pulse relative w-22 h-22 sm:w-24 sm:h-24 flex items-center justify-center">
+            <div class="seal-ring-pulse relative w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
               <svg viewBox="0 0 120 120" class="w-full h-full drop-shadow-[0_12px_18px_rgba(4,10,30,0.65)]">
                 <defs>
                   <radialGradient id="royalWaxGrad" cx="35%" cy="30%" r="70%">
@@ -409,7 +466,7 @@
               </svg>
               <span
                 id="sealMonogram"
-                class="absolute inset-0 pt-3 flex items-center justify-center font-display font-bold text-base sm:text-lg tracking-wider text-[#4A3404] drop-shadow-[0_1px_0_rgba(255,248,220,0.8)] select-none"
+                class="absolute inset-0 pt-3 flex items-center justify-center font-display font-bold text-sm sm:text-lg tracking-wider text-[#4A3404] drop-shadow-[0_1px_0_rgba(255,248,220,0.8)] select-none"
               >
                 J &amp; C
               </span>
@@ -420,11 +477,11 @@
       </div>
 
       <!-- Tap Prompt Below Envelope -->
-      <div id="openPrompt" class="mt-7 sm:mt-9 flex flex-col items-center gap-2 transition-opacity duration-500">
+      <div id="openPrompt" class="mt-6 sm:mt-8 flex flex-col items-center gap-2 transition-opacity duration-500">
         <button
           id="promptOpenBtn"
           type="button"
-          class="group inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-royalDark/80 backdrop-blur-md border border-gold/60 text-goldLight text-xs uppercase tracking-[0.24em] font-medium shadow-[0_8px_25px_rgba(4,10,30,0.5)] hover:bg-royal hover:border-goldLight transition-all"
+          class="group inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-royalDark/80 backdrop-blur-md border border-gold/60 text-goldLight text-[11px] sm:text-xs uppercase tracking-[0.24em] font-medium shadow-[0_8px_25px_rgba(4,10,30,0.5)] hover:bg-royal hover:border-goldLight transition-all"
         >
           <span>Tap Royal Seal to Open</span>
           <svg class="w-3.5 h-3.5 text-goldLight transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -434,26 +491,26 @@
       </div>
     </section>
 
-    <!-- STAGE 2: ROYAL BLUE & IVORY FAIRYTALE INVITATION CARD -->
+    <!-- STAGE 2: 3-SECTION ROYAL INVITATION CARD -->
     <section
       id="invitationSuite"
       aria-hidden="true"
-      class="invitation-suite-modal hidden w-full max-w-3xl mx-auto my-2 sm:my-4"
+      class="invitation-suite-modal hidden w-full max-w-2xl mx-auto my-2 sm:my-4"
     >
-      <div class="paper-texture relative rounded-2xl shadow-[0_30px_80px_-12px_rgba(4,10,30,0.75)] border-2 border-gold/70 p-3 sm:p-6 md:p-8">
+      <div class="paper-texture relative rounded-2xl shadow-[0_30px_80px_-12px_rgba(4,10,30,0.75)] border-2 border-gold/75 p-2.5 sm:p-5 md:p-7">
 
-        <div class="relative rounded-xl border border-gold/80 p-4 sm:p-8 md:p-10">
+        <div class="relative rounded-xl border border-gold/80 p-4 sm:p-7 md:p-9">
           <div class="pointer-events-none absolute inset-1.5 rounded-lg border border-royal/20"></div>
 
-          <!-- Top Action Bar inside Card -->
+          <!-- Top Utility Row -->
           <div class="relative z-10 flex items-center justify-between mb-4 sm:mb-6">
-            <span class="text-[10px] sm:text-xs uppercase tracking-[0.26em] text-royal font-semibold">
+            <span class="text-[10px] sm:text-xs uppercase tracking-[0.24em] text-royal font-semibold">
               Royal Celebration • 2027
             </span>
             <button
               id="closeEnvelopeBtn"
               type="button"
-              class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-parchment hover:bg-royal hover:text-ivory border border-royal/25 text-royal text-[11px] uppercase tracking-wider font-medium transition-colors"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-parchment hover:bg-royal hover:text-ivory border border-royal/25 text-royal text-[10px] sm:text-[11px] uppercase tracking-wider font-medium transition-colors"
             >
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -462,9 +519,11 @@
             </button>
           </div>
 
-          <!-- Fairytale Tiara Crest & Couple Header -->
-          <div class="relative z-10 text-center max-w-xl mx-auto">
-            <div class="w-20 h-12 mx-auto mb-2.5 text-goldDark flex items-center justify-center">
+          <!-- =========================================================
+               SECTION 1 (TOP): COUPLE PORTRAIT & JES & CHARM
+               ========================================================= -->
+          <div class="relative z-10 text-center max-w-lg mx-auto pb-6 border-b border-gold/45">
+            <div class="w-16 h-10 mx-auto mb-2 text-goldDark flex items-center justify-center">
               <svg viewBox="0 0 120 64" class="w-full h-full">
                 <path d="M12,48 C22,38 32,42 38,48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
                 <path d="M108,48 C98,38 88,42 82,48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
@@ -476,68 +535,66 @@
               </svg>
             </div>
 
-            <p class="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-royal/80 font-semibold mb-2">
+            <!-- Optional Couple Photo Portrait on Opened Card -->
+            <div id="cardPhotoContainer" class="hidden couple-photo-frame w-44 sm:w-52 aspect-[4/3] mx-auto mb-4 rounded-xl border-2 border-gold shadow-md">
+              <img id="cardCouplePhoto" src="" alt="Jes and Charm" class="couple-photo-img" />
+            </div>
+
+            <p class="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-royal/80 font-semibold mb-1.5">
               Together With Their Families
             </p>
 
-            <h2 class="font-script text-6xl sm:text-7xl text-royal leading-tight py-1 drop-shadow-[0_1px_1px_rgba(22,53,122,0.12)]">
+            <h2 class="font-script text-[clamp(3rem,10vw,4.5rem)] text-royal leading-none py-1 drop-shadow-[0_1px_1px_rgba(22,53,122,0.12)]">
               <span id="cardGroom">Jes</span>
-              <span class="font-serif italic text-3xl sm:text-4xl text-goldDark mx-2">&amp;</span>
+              <span class="font-serif italic text-[clamp(1.75rem,5vw,2.25rem)] text-goldDark mx-1.5">&amp;</span>
               <span id="cardBride">Charm</span>
             </h2>
 
             <p class="font-serif italic text-base sm:text-lg text-mutedText mt-1.5">
               Cordially invite you to celebrate their happily ever after
             </p>
-
-            <div class="flex items-center justify-center gap-3 my-5">
-              <span class="h-[1px] w-16 bg-gradient-to-r from-transparent to-gold"></span>
-              <svg class="w-4 h-4 text-goldDark" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L14.2 9.8L22 12L14.2 14.2L12 22L9.8 14.2L2 12L9.8 9.8L12 2Z" />
-              </svg>
-              <span class="h-[1px] w-16 bg-gradient-to-l from-transparent to-gold"></span>
-            </div>
           </div>
 
-          <!-- ESSENTIAL DETAILS: DATE, VENUE ADDRESS & INLINE GOOGLE SHEETS RSVP -->
-          <div class="relative z-10 max-w-lg mx-auto space-y-6 text-center">
+          <!-- =========================================================
+               SECTION 2 (MIDDLE): DATE OF THE EVENT & LOCATION
+               ========================================================= -->
+          <div class="relative z-10 max-w-lg mx-auto py-6 border-b border-gold/45 text-center">
+            <div class="bg-parchment/85 rounded-xl border border-royal/20 shadow-inner p-4 sm:p-6">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 items-center">
+                <!-- Date & Time -->
+                <div class="sm:border-r sm:border-gold/50 sm:pr-4">
+                  <p class="text-[10px] sm:text-[11px] uppercase tracking-[0.26em] text-royal font-semibold mb-1">
+                    Date of the Event
+                  </p>
+                  <p id="cardFullDate" class="font-serif text-xl sm:text-2xl text-royalDark font-semibold leading-snug">
+                    Saturday, May 15, 2027
+                  </p>
+                  <p id="cardEventTime" class="font-serif italic text-sm sm:text-base text-mutedText mt-1">
+                    Ceremony begins at 3:00 PM
+                  </p>
+                </div>
 
-            <!-- 1. Event Date & Venue Address Card -->
-            <div class="bg-parchment/85 rounded-xl border border-royal/20 shadow-inner p-5 sm:p-6">
-              <p class="text-[11px] uppercase tracking-[0.28em] text-royal font-semibold mb-1.5">
-                Date of the Event
-              </p>
-              <p id="cardFullDate" class="font-serif text-2xl sm:text-3xl text-royalDark font-semibold">
-                Saturday, May 15, 2027
-              </p>
-              <p id="cardEventTime" class="font-serif italic text-base sm:text-lg text-mutedText mt-0.5">
-                Ceremony begins at 3:00 PM
-              </p>
-
-              <div class="flex items-center justify-center gap-2 my-5">
-                <span class="h-[1px] w-12 bg-gold/60"></span>
-                <span class="w-1.5 h-1.5 rotate-45 bg-royal"></span>
-                <span class="h-[1px] w-12 bg-gold/60"></span>
+                <!-- Location -->
+                <div class="sm:pl-2">
+                  <p class="text-[10px] sm:text-[11px] uppercase tracking-[0.26em] text-royal font-semibold mb-1">
+                    Location
+                  </p>
+                  <p id="cardVenueName" class="font-display text-lg sm:text-xl text-royalDark font-bold tracking-wide">
+                    Villa Monica
+                  </p>
+                  <p id="cardVenueLocation" class="font-serif italic text-sm sm:text-base text-mutedText mt-0.5">
+                    Villa Monica, Pateros
+                  </p>
+                </div>
               </div>
 
-              <!-- 2. Venue Address + Google Maps Link -->
-              <p class="text-[11px] uppercase tracking-[0.28em] text-royal font-semibold mb-1.5">
-                Venue Address
-              </p>
-              <p id="cardVenueName" class="font-display text-xl sm:text-2xl text-royalDark font-bold tracking-wide">
-                Villa Monica
-              </p>
-              <p id="cardVenueLocation" class="font-serif italic text-base sm:text-lg text-mutedText mt-1">
-                Villa Monica, Pateros
-              </p>
-
-              <div class="mt-4">
+              <div class="mt-4 pt-3 border-t border-royal/10">
                 <a
                   id="googleMapsLink"
                   href="https://www.google.com/maps/search/?api=1&query=Villa+Monica+Pateros"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-ivory hover:bg-royal hover:text-ivory border border-royal/30 text-royal text-[11px] uppercase tracking-[0.2em] font-semibold transition-all shadow-sm"
+                  class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-ivory hover:bg-royal hover:text-ivory border border-royal/30 text-royal text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold transition-all shadow-sm"
                 >
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.85" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -547,58 +604,62 @@
                 </a>
               </div>
             </div>
+          </div>
 
-            <!-- 3. Interactive Confirmation Selection -->
-            <div class="pt-1">
-              <p class="text-[11px] uppercase tracking-[0.28em] text-royal font-semibold mb-1">
-                Confirm Your Attendance
+          <!-- =========================================================
+               SECTION 3 (BOTTOM): RSVP CONFIRMATION & GUEST FORM
+               ========================================================= -->
+          <div class="relative z-10 max-w-lg mx-auto pt-6 text-center space-y-4">
+            <div>
+              <p class="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-royal font-semibold mb-1">
+                R.S.V.P.
               </p>
-              <p class="font-serif italic text-base text-mutedText mb-4">
-                Please select whether you will attend to enter your guest details
+              <p class="font-serif italic text-base text-mutedText">
+                Please confirm your attendance below
               </p>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <button
-                  id="btnConfirmYes"
-                  type="button"
-                  data-status="Confirmed"
-                  class="rsvp-choice-btn group flex flex-col items-center justify-center p-4 rounded-xl border border-royal/30 bg-ivory hover:border-royal hover:bg-parchment transition-all active:scale-[0.99]"
-                >
-                  <span class="text-xs uppercase tracking-[0.2em] font-semibold text-royalDark group-hover:text-royal">
-                    Joyfully Accept
-                  </span>
-                  <span class="font-serif italic text-sm text-goldDark font-medium mt-0.5">
-                    (Confirmed)
-                  </span>
-                </button>
-
-                <button
-                  id="btnConfirmNo"
-                  type="button"
-                  data-status="Unable to Attend"
-                  class="rsvp-choice-btn group flex flex-col items-center justify-center p-4 rounded-xl border border-royal/30 bg-ivory hover:border-royal hover:bg-parchment transition-all active:scale-[0.99]"
-                >
-                  <span class="text-xs uppercase tracking-[0.2em] font-semibold text-royalDark group-hover:text-royal">
-                    Regretfully Decline
-                  </span>
-                  <span class="font-serif italic text-sm text-mutedText mt-0.5">
-                    (Unable to Attend)
-                  </span>
-                </button>
-              </div>
             </div>
 
-            <!-- 4. Inline Royal RSVP Form Card (Revealed on Click & Saves Directly to Google Sheets) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button
+                id="btnConfirmYes"
+                type="button"
+                data-status="Confirmed"
+                class="rsvp-choice-btn group flex flex-col items-center justify-center p-3.5 sm:p-4 rounded-xl border border-royal/30 bg-ivory hover:border-royal hover:bg-parchment transition-all active:scale-[0.99]"
+              >
+                <span class="text-xs uppercase tracking-[0.2em] font-semibold text-royalDark group-hover:text-royal">
+                  Joyfully Accept
+                </span>
+                <span class="font-serif italic text-sm text-goldDark font-medium mt-0.5">
+                  (Confirmed)
+                </span>
+              </button>
+
+              <button
+                id="btnConfirmNo"
+                type="button"
+                data-status="Unable to Attend"
+                class="rsvp-choice-btn group flex flex-col items-center justify-center p-3.5 sm:p-4 rounded-xl border border-royal/30 bg-ivory hover:border-royal hover:bg-parchment transition-all active:scale-[0.99]"
+              >
+                <span class="text-xs uppercase tracking-[0.2em] font-semibold text-royalDark group-hover:text-royal">
+                  Regretfully Decline
+                </span>
+                <span class="font-serif italic text-sm text-mutedText mt-0.5">
+                  (Unable to Attend)
+                </span>
+              </button>
+            </div>
+
+            <!-- Inline Royal RSVP Form Card -->
             <div
               id="googleFormPanel"
-              class="hidden rounded-xl bg-gradient-to-br from-royal via-royalDark to-[#071233] text-ivory p-5 sm:p-7 shadow-xl border border-gold/60 text-center space-y-4 transition-all"
+              class="hidden rounded-xl bg-gradient-to-br from-royal via-royalDark to-[#071233] text-ivory p-4 sm:p-6 shadow-xl border border-gold/60 text-center space-y-4 transition-all"
             >
-              <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ivory/10 border border-gold/50 text-goldLight text-[11px] uppercase tracking-[0.22em] font-medium">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ivory/10 border border-gold/50 text-goldLight text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-medium">
                 <span class="w-1.5 h-1.5 rounded-full bg-goldLight shadow-[0_0_6px_#F3DC8B]"></span>
                 <span>Status: <strong id="selectedStatusLabel" class="font-semibold">Confirmed</strong></span>
               </div>
 
-              <h3 id="googleFormHeading" class="font-serif text-2xl sm:text-3xl text-ivory font-medium">
+              <h3 id="googleFormHeading" class="font-serif text-xl sm:text-2xl text-ivory font-medium">
                 Complete Your Guest Details
               </h3>
 
@@ -681,7 +742,6 @@
 
               <div id="rsvpFeedbackBox" class="hidden rounded-xl bg-ivory/10 border border-gold/50 p-4 text-sm text-ivory"></div>
             </div>
-
           </div>
 
         </div>
@@ -701,7 +761,7 @@
       <div class="flex items-center justify-between mb-4">
         <div>
           <p class="text-[10px] uppercase tracking-[0.25em] text-royal font-semibold">Royal Host Settings</p>
-          <h3 id="customizeModalTitle" class="font-serif text-2xl text-royalDark font-semibold">Customize Invitation &amp; Google Sheet</h3>
+          <h3 id="customizeModalTitle" class="font-serif text-2xl text-royalDark font-semibold">Customize Invitation</h3>
         </div>
         <button
           id="closeCustomizeBtn"
@@ -758,7 +818,11 @@
           </div>
         </div>
 
-        <!-- Google Apps Script URL Field -->
+        <div>
+          <label class="block text-[10px] uppercase tracking-[0.2em] text-royal font-semibold mb-1">Couple Photo File Name or URL</label>
+          <input id="inputPhotoUrl" type="text" placeholder="couple.jpg" class="w-full px-3.5 py-2 rounded-xl bg-ivory border border-royal/30 text-sm text-royalDark outline-none focus:border-royal" />
+        </div>
+
         <div class="pt-1.5 border-t border-royal/20">
           <label for="inputGoogleScriptUrl" class="block text-[10px] uppercase tracking-[0.2em] text-royal font-bold mb-1">
             Google Apps Script Web App URL
@@ -766,12 +830,8 @@
           <input
             id="inputGoogleScriptUrl"
             type="url"
-            placeholder="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"
-            class="w-full px-3.5 py-2.5 rounded-xl bg-ivory border border-gold text-sm text-royalDark outline-none focus:border-royal placeholder:text-mutedText/55"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-ivory border border-gold text-sm text-royalDark outline-none focus:border-royal"
           />
-          <p class="text-[11px] text-mutedText mt-1 leading-relaxed">
-            Your Google Apps Script Web App URL is already linked.
-          </p>
         </div>
 
         <div class="pt-2 flex flex-wrap items-center justify-between gap-2">
@@ -803,14 +863,44 @@
     </div>
   </div>
 
-  <!-- FAIRYTALE SPARKLE CANVAS, HARP AUDIO & INTERACTIVE LOGIC -->
+  <!-- INTERACTIVE LOGIC -->
   <script>
+    /* >>> SET YOUR COUPLE PHOTO FILENAME (e.g. 'couple.jpg' uploaded in your repo) <<< */
+    const COUPLE_PHOTO_URL = 'couple.jpg';
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyKMk57u3LnlZtI7fvAnbUb60LBUAr_aCncBPjUn_JsHo-hazl8Q4f_kZIJ6H12q3vHRw/exec';
-    /* Host mode: open this page with ?host at the end of the link to show the Customize button */
     const IS_HOST = new URLSearchParams(window.location.search).has('host');
 
+    /* Load Couple Photo Safely (Falls back cleanly if file isn't uploaded yet) */
+    function setCouplePhoto(url) {
+      const envImg = document.getElementById('envelopeCouplePhoto');
+      const envFallback = document.getElementById('envelopePhotoFallback');
+      const cardContainer = document.getElementById('cardPhotoContainer');
+      const cardImg = document.getElementById('cardCouplePhoto');
+
+      if (!url) {
+        envImg.classList.add('hidden');
+        envFallback.classList.remove('hidden');
+        cardContainer.classList.add('hidden');
+        return;
+      }
+
+      envImg.onload = function () {
+        envImg.classList.remove('hidden');
+        envFallback.classList.add('hidden');
+        cardImg.src = url;
+        cardContainer.classList.remove('hidden');
+      };
+      envImg.onerror = function () {
+        envImg.classList.add('hidden');
+        envFallback.classList.remove('hidden');
+        cardContainer.classList.add('hidden');
+      };
+      envImg.src = url;
+    }
+    setCouplePhoto(COUPLE_PHOTO_URL);
+
     /**
-     * 1. AMBIENT FAIRY-DUST SPARKLES & STARLIGHT PARTICLE CANVAS
+     * 1. HIGH-DPI AMBIENT FAIRY-DUST PARTICLE CANVAS
      */
     (function initAmbientCanvas() {
       const canvas = document.getElementById('ambientCanvas');
@@ -821,14 +911,18 @@
       let burstParticles = [];
 
       function resizeCanvas() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
       window.addEventListener('resize', resizeCanvas);
       resizeCanvas();
 
-      const particleCount = Math.min(65, Math.floor((width * height) / 18000));
+      const particleCount = Math.min(60, Math.floor((width * height) / 18000));
       for (let i = 0; i < particleCount; i++) {
         const isStar = i % 6 === 0;
         const isGold = i % 2 === 0;
@@ -1000,7 +1094,7 @@
     });
 
     /**
-     * 3. CHOREOGRAPHED 3D ROYAL ENVELOPE OPENING & CLOSING SEQUENCE
+     * 3. CHOREOGRAPHED 3D ENVELOPE OPENING & CLOSING SEQUENCE
      */
     const envelopeSection = document.getElementById('envelopeSection');
     const envelopeWrapper = document.getElementById('envelopeWrapper');
@@ -1027,7 +1121,7 @@
 
       setTimeout(() => {
         envelopeSection.style.opacity = '0';
-        envelopeSection.style.transform = 'translateY(30px) scale(0.94)';
+        envelopeSection.style.transform = 'translateY(24px) scale(0.95)';
 
         setTimeout(() => {
           envelopeSection.classList.add('hidden');
@@ -1036,9 +1130,10 @@
 
           void invitationSuite.offsetWidth;
           invitationSuite.classList.add('is-visible');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
           isAnimating = false;
         }, 420);
-      }, 950);
+      }, 1350);
     }
 
     function closeEnvelopeSequence() {
@@ -1064,7 +1159,7 @@
           isEnvelopeOpen = false;
           isAnimating = false;
         }, 250);
-      }, 480);
+      }, 450);
     }
 
     envelopeWrapper.addEventListener('click', openEnvelopeSequence);
@@ -1136,7 +1231,7 @@
       const scriptUrl = (configuredScriptUrl || '').trim();
       if (!scriptUrl || scriptUrl.indexOf('https://script.google.com') !== 0) {
         rsvpFeedbackBox.classList.remove('hidden');
-        rsvpFeedbackBox.innerHTML = '<span class="text-goldLight font-semibold">Setup Needed:</span> Please paste your Google Apps Script Web App URL into <code>GOOGLE_SCRIPT_URL</code> (or via <code>?host</code> Customize).';
+        rsvpFeedbackBox.innerHTML = '<span class="text-goldLight font-semibold">Setup Needed:</span> Please paste your Google Apps Script Web App URL.';
         return;
       }
 
@@ -1192,7 +1287,7 @@
     }
 
     /**
-     * 5. HOST CUSTOMIZATION MODAL & SHAREABLE GUEST LINK GENERATOR
+     * 5. HOST CUSTOMIZATION MODAL
      */
     const customizeModal = document.getElementById('customizeModal');
     const openCustomizeBtn = document.getElementById('openCustomizeBtn');
@@ -1228,6 +1323,7 @@
       const shortDate = config.shortDate || 'May 15, 2027 • Villa Monica';
       const venue = config.venue || 'Villa Monica';
       const address = config.address || 'Villa Monica, Pateros';
+      const photoUrl = config.photo || COUPLE_PHOTO_URL;
       configuredScriptUrl = (config.scriptUrl || GOOGLE_SCRIPT_URL).trim();
 
       document.getElementById('inputGroom').value = groom;
@@ -1238,7 +1334,10 @@
       document.getElementById('inputShortDate').value = shortDate;
       document.getElementById('inputVenue').value = venue;
       document.getElementById('inputAddress').value = address;
-      document.getElementById('inputGoogleScriptUrl').value = configuredScriptUrl.indexOf('https://') === 0 ? configuredScriptUrl : '';
+      document.getElementById('inputPhotoUrl').value = photoUrl;
+      document.getElementById('inputGoogleScriptUrl').value = configuredScriptUrl;
+
+      setCouplePhoto(photoUrl);
 
       document.querySelectorAll('.couple-names-display').forEach((el) => {
         el.textContent = `${groom} & ${bride}`;
@@ -1270,6 +1369,7 @@
         shortDate: document.getElementById('inputShortDate').value.trim(),
         venue: document.getElementById('inputVenue').value.trim(),
         address: document.getElementById('inputAddress').value.trim(),
+        photo: document.getElementById('inputPhotoUrl').value.trim(),
         scriptUrl: document.getElementById('inputGoogleScriptUrl').value.trim()
       };
     }
@@ -1314,8 +1414,12 @@
           shortDate: params.get('shortDate'),
           venue: params.get('venue'),
           address: params.get('address'),
+          photo: params.get('photo'),
           scriptUrl: params.get('scriptUrl') || params.get('form')
         });
+      } else {
+        document.getElementById('inputGoogleScriptUrl').value = GOOGLE_SCRIPT_URL;
+        document.getElementById('inputPhotoUrl').value = COUPLE_PHOTO_URL;
       }
     })();
 
